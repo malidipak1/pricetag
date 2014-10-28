@@ -13,28 +13,19 @@ Options +FollowSymLinks
 ErrorDocument 404 /404.php
 ErrorDocument 500 /500.php 
 
-# Force simple error message for requests for non-existent favicon.ico.
-<FilesMatch "favicon\.ico$">
-  ErrorDocument 404 "The requested file favicon.ico was not found."
-</FilesMatch>
-<IfModule mod_rewrite.c>
-RewriteEngine on
-
 #Max execution time for script
 php_value max_execution_time 1000
 
+<ifmodule mod_deflate.c>
+#AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+</ifmodule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+
 #Allow only access via www link
-RewriteCond %{HTTP_HOST} !^www.pricetag.com [NC]
-RewriteRule ^(.*)$  http://www.pricetag.com/$1 [QSA,L,R=301]
-
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^(.*)$ $1 [L]
-
-RewriteRule ^a/go/a=(.*)/$ a/go.php?a=$1 [QSA,L]
-RewriteRule ^a/go/a=(.*)$ a/go.php?a=$1 [QSA,L]
-RewriteRule ^a/go/a/(.*)/$ a/go.php?a=$1 [QSA,L]
-RewriteRule ^a/go/a/(.*)$ a/go.php?a=$1 [QSA,L]
-RewriteRule ^a/go(.*)$ a/go.php [QSA,L]
+#RewriteCond %{HTTP_HOST} !^www.pricetag.com [NC]
+#RewriteRule ^(.*)$  http://www.pricetag.com/$1 [QSA,L,R=301]
 
 #RewriteRule ^captcha(.*)$ captcha.php?{query_string} [QSA,L]
 #RewriteRule ^server(.*)$ server.php?{query_string} [QSA,L]
@@ -43,6 +34,10 @@ RewriteRule ^a/go(.*)$ a/go.php [QSA,L]
 #RewriteRule ^css(.*)$ css.php?path=$1&%{query_string} [QSA,L]
 #RewriteRule ^js(.*)$ js.php?path=$1&%{query_string} [QSA,L]
 #RewriteRule ^ajax(.*)$ ajax.php?params=ajax$1&%{query_string} [QSA,L]
-#RewriteRule ^cron(.*)$ cron.php?params=cron$1&%{query_string} [QSA,L]
+RewriteRule ^cron(.*)$ cron.php?params=cron$1&%{query_string} [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^(.*)/favicon\.ico$
 RewriteRule ^(.*)$ index.php?params=$1&%{query_string} [QSA,L]
 </IfModule>

@@ -1,7 +1,5 @@
 <?php
-require_once 'core/class.application.php';
-echo "test";
-Application $objApp = new Application();
+require_once '../core/class.application.php';
+$objApp = new Application();
 $objApp->run();
-
 ?>
