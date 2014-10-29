@@ -3,26 +3,28 @@
 Class CategoryModel extends Model{
 	
 	public function __construct() {
+		$this->table = "categories";
 		parent::__construct();
 	}
 	
 	public function getCategoryList($param) {
-		$sql = "SELECT * FROM `categories` ";
-		$arrResult = $this->getAll($sql);
+		//$sql = "SELECT * FROM `categories` ";
+		$arrResult = $this->getAll(array());
 		return $arrResult;
 	}
 	
 	public function getCategory($catId = 0) {
-		$sql = "SELECT * FROM `categories` where category_id = ". $catId;
-		$arrResult = $this->getRow($sql);
+		
+		$arrParam = array('category_id' => $catId);
+		$arrResult = $this->getRow($arrParam);
 		return $arrResult;
 	}
 	
 	
 	public function getCategoriesByParent($parentcatId = 0) {
 		$arrCatTree = array();
-		echo $sql = "SELECT * FROM `categories` where parent_cat_id = " . $parentcatId ;
-		$arrResult = $this->getAll($sql);
+		$arrParam = array('parent_cat_id' => $parentcatId);
+		$arrResult = $this->getAll($arrParam);
 		
 		return $arrResult;;
 	}
