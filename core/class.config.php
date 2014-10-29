@@ -24,7 +24,7 @@ Class Config {
  		self::$config['WEBSITE_IMG'] = "";
 		
  		self::$config['LAYOUT_DIR'] = Config::get('TEMPLATE_DIR') . "layout" . self::$config['DIR_SEPERATOR'];
- 		
+ 		self::$config['PER_PAGE'] = 10;
  		
  		//self::loadCronProp();
 	}

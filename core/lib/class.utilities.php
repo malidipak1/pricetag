@@ -18,5 +18,24 @@ class Utilities {
 		}
 		return $listDir;
 	}
+	
+	static function getPagingOffset() {
+		$arrResult = array();
+		$perPage = Config::get('PER_PAGE');
+		if( isset($_GET{'page'} ) ) {
+			$page = $_GET{'page'} - 1;
+			$offset = $perPage * $page ;
+		} else {
+			$page = 0;
+			$offset = 0;
+		}
+		
+		$arrResult['page'] = $page;
+		$arrResult['offset'] = $offset;
+		
+		return $arrResult;
+	}
+	
+	
 }
 ?>

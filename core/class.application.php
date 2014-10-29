@@ -10,6 +10,7 @@ class Application {
 	
 	
 	public function loadApplication () {
+		require_once Config::get('LIBRARY_DIR') . "class.utilities.php";
 		require_once Config::get('LIBRARY_DIR') . "class.model.php";
 		require_once Config::get('LIBRARY_DIR') . 'class.db.mysql.php';
 		require_once Config::get('SMARTY_LIB_DIR') . "Smarty.class.php";

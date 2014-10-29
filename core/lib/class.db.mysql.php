@@ -9,10 +9,10 @@ Class DbMysql {
 
 		try{
 			$dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME;
-			$conn = new PDO($dsn, DB_USER, DB_PASSWD);
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$conn->exec("SET CHARACTER SET utf8");
-			DbMysql::$db = $conn;		
+			DbMysql::$db = new PDO($dsn, DB_USER, DB_PASSWD);
+			DbMysql::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			DbMysql::$db->exec("SET CHARACTER SET utf8");
+			//DbMysql::$db = $conn;		
 			echo "Created DB Connection....";
 		} catch(PDOException $e){
 			echo 'ERROR: ' . $e->getMessage();

@@ -33,7 +33,7 @@ RewriteEngine on
 #RewriteRule ^download(.*)$ download.php?id=$1&type=$2%{query_string} [QSA,L]
 #RewriteRule ^css(.*)$ css.php?path=$1&%{query_string} [QSA,L]
 #RewriteRule ^js(.*)$ js.php?path=$1&%{query_string} [QSA,L]
-#RewriteRule ^ajax(.*)$ ajax.php?params=ajax$1&%{query_string} [QSA,L]
+RewriteRule ^go(.*)$ go.php?params=go$1&%{query_string} [QSA,L]
 RewriteRule ^cron(.*)$ cron.php?params=cron$1&%{query_string} [QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
