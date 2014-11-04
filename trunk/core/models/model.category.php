@@ -7,9 +7,12 @@ Class CategoryModel extends Model{
 		parent::__construct();
 	}
 	
-	public function getCategoryList($param) {
-		//$sql = "SELECT * FROM `categories` ";
-		$arrResult = $this->getAll(array());
+	public function getCategoryList($param = array()) {
+		
+		$arrResult = $this->getAll($param);
+		
+		//print_r($arrResult);
+		
 		return $arrResult;
 	}
 	

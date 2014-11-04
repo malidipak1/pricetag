@@ -29,6 +29,9 @@ if($param[0] == 'go') {
 			$url = $prodDetails['prod_link'];
 			break;
 		
+		case 2:
+			//snapdeal: &aff_id=13879
+			break;	
 		default:		
 			//$url = "";
 	}

@@ -21,8 +21,10 @@ $fileList = Utilities::readDirectory(FLIPKART_FILE_PATH);
 CronComponent::snapdealImport("C:\\Users\\dipakm\\Documents\\Dipak\\Personal\\flipkart_prr\\snapdeal\\topElectronics_1.csv");
 die;
  */
+
+
 foreach ($fileList as $file) {
-	$fileToProcess = FLIPKART_FILE_PATH . $file;
+	echo $fileToProcess = FLIPKART_FILE_PATH . $file;
 	if(CronComponent::flipkartImport($fileToProcess)) {
 	
 		/** Code move file to processed DIR **/
@@ -35,5 +37,6 @@ foreach ($fileList as $file) {
 }
 
 
+CronComponent::plotCategories();
 
 ?>

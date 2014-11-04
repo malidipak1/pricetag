@@ -60,6 +60,53 @@ Class CronProductImport extends Model{
 		
 		return $arrReturn;
 	}
+	
+	public function getDistinctCategories() {
+		$sql = "SELECT distinct prod_cat_3, prod_cat_2, prod_cat_1 FROM `products` where prod_cat_3 is not null and prod_cat_3 <> '' ";
+		$stmt = $this->dbConn->query($sql);
+		$arrReturn = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $arrReturn;
+		
+	}
+	
+	public function getCategoryDetails ($catName = '', $level = 1) {
+		$this->table = "categories";
+		$arrParam = array('category_name' => $catName, 'level' => $level);
+		
+		return $this->getRow($arrParam);		
+	} 
+	
+	
+	public function insertCategory($catName, $parentCatName = '',  $level = 1) {
+		
+		$catDetails = $this->getCategoryDetails($catName, $level);
+		if(empty($catDetails) ) {
+		
+			
+			if($level == 1) {
+				$parent_cat_id = 0;
+			} else {
+				$s = $this->getCategoryDetails($parentCatName, ($level-1));
+				print_r($s);
+				$parent_cat_id = $s['category_id'];
+			}
+			$data = array (':category_name' => $catName, ':parent_cat_id' => $parent_cat_id, ':level' => $level);
+			
+			echo "<BR>" . $sql = "INSERT INTO `categories` ( `category_name`, `parent_cat_id`, `level`) VALUES (:category_name, :parent_cat_id, :level)" . $catName . " -> " . $parent_cat_id . " -> " . $level;
+			$sql = "INSERT INTO `categories` ( `category_name`, `parent_cat_id`, `level`) VALUES (:category_name, :parent_cat_id, :level)";
+			
+			$stmt = $this->dbConn->prepare($sql);
+			
+			foreach ($data as $key => $val) {
+				$stmt->bindValue($key, $val); // should not use bindParam();
+			}
+			$stmt->execute();
+			//echo "Inserted category..." . $data[':prod_code'];
+		}
+	}
+	
+	
 }
 
 ?>
