@@ -5,6 +5,7 @@ Class Model {
 	protected $dbConn = null;
 	public $isPaging = false;
 	
+	public $pagingPerPage = 0;
 	protected  $table = "";
 	
 	public function __construct() {
@@ -13,31 +14,31 @@ Class Model {
 	
 	public function getAll($param = array()) {
 
-		$whereClause = '';
-		foreach ($param as $key => $value) {
-			$whereClause .= " " . $key . " = '" . $value . "' " ;	
-		}
+		$whereClause = $this->getWhereClause($param);		
 		
-		if ($whereClause == '') {
-			$whereClause = " 1=1 ";
-		}
 		$sql = "SELECT * FROM " . $this->table . " where " . $whereClause;
 		$arrReturn = array();
 		
 		if($this->isPaging) {
-			$perPage = Config::get('PER_PAGE');
+			if($this->pagingPerPage == 0) {
+				$perPage = Config::get('PER_PAGE');
+			} else {
+				$perPage = $this->pagingPerPage;
+			}
 			$totalCount = $this->getCount($param);
 			$arrOffset = Utilities::getPagingOffset();
 			$page = $arrOffset['page'];
 			$offSet = $arrOffset['offset'];
 			
+			$recLeft = $totalCount - ($page * $perPage);
+			
 			$arrReturn['total_count'] = $totalCount;
 			$arrReturn['page'] = $page;
 			$arrReturn['offset'] = $offSet;
 			$arrReturn['per_page'] = $perPage;
-			
-			$recLeft = $totalCount - ($page * $perPage);
 			$arrReturn['record_left'] = $recLeft;
+			$arrReturn['first_page'] = 1;
+			$arrReturn['last_page'] = ceil($totalCount / $perPage);
 			
 			/* if( $page > 0 ) {
 				$last = $page - 2;
@@ -54,22 +55,16 @@ Class Model {
 		}
 		//echo $sql;
 		$stmt = $this->dbConn->query($sql);
+		
 		$arrReturn['result'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $arrReturn;
 	}
 
 	public function getRow($param = array()) {
 		$arrReturn = array();
-		$whereClause = '';
-		foreach ($param as $key => $value) {
-			$whereClause .= " " . $key . " = '" . $value . "' " ;
-		}
-		if ($whereClause == '') {
-			$whereClause = " 1=1 ";
-		}
+		$whereClause = $this->getWhereClause($param);
 		
 		$sql = "SELECT * FROM " . $this->table . " where " . $whereClause;
-		
 		$stmt = $this->dbConn->query($sql);
 		$arrReturn = $stmt->fetch(PDO::FETCH_ASSOC);
 		return $arrReturn;;
@@ -77,13 +72,7 @@ Class Model {
 	
 	public function getCount($param = array()) {
 		
-		$whereClause = '';
-		foreach ($param as $key => $value) {
-			$whereClause .= " " . $key . " = '" . $value . "' " ;
-		}
-		if ($whereClause == '') {
-			$whereClause = " 1=1 ";
-		}
+		$whereClause = $this->getWhereClause($param);
 		
 		$sql = "SELECT count(1) as count FROM " . $this->table . " where " . $whereClause;
 		$stmt = $this->dbConn->query($sql);
@@ -92,6 +81,25 @@ Class Model {
 		
 	}
 	
+	private function getWhereClause ($param = array()) {
+		$whereClause = '';
+		
+		$flag = false;
+		foreach ($param as $key => $value) {
+			if($flag) {
+				$whereClause .= " and " . $key . " = '" . $value . "' " ;
+			} else {
+				$whereClause .= " " . $key . " = '" . $value . "' " ;
+				$flag = true;
+			}
+		}
+		
+		if ($whereClause == '') {
+			$whereClause = " 1=1 ";
+		}
+		
+		return $whereClause;
+	}
 	
 }
 

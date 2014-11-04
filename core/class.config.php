@@ -5,7 +5,6 @@ Class Config {
 	
 	public static function load() {
 
-		
 		self::$config['DIR_SEPERATOR'] = DIRECTORY_SEPARATOR;
 		self::$config['APP_DIR'] = dirname(dirname(__FILE__)) . self::$config['DIR_SEPERATOR'];
 		self::$config['CORE_DIR'] = dirname(__FILE__) . self::$config['DIR_SEPERATOR'];
@@ -18,14 +17,18 @@ Class Config {
 		self::$config['MODEL_DIR'] = self::$config['CORE_DIR'] . "models" . self::$config['DIR_SEPERATOR'];
 		
 		self::$config['TEMPLATE_DIR'] = self::$config['PUBLIC_HTML_DIR'] . "template" .self::$config['DIR_SEPERATOR'];
-		self::$config['TEMPLATE_COMPILE_DIR'] = self::get('CORE_DIR') . "templates_c" . self::$config['DIR_SEPERATOR'];
-		self::$config['CACHE_DIR'] = self::get('CORE_DIR') . "cache" . self::$config['DIR_SEPERATOR'];
+		self::$config['TEMPLATE_COMPILE_DIR'] = self::$config['CORE_DIR'] . "templates_c" . self::$config['DIR_SEPERATOR'];
+		self::$config['CACHE_DIR'] = self::$config['CORE_DIR'] . "cache" . self::$config['DIR_SEPERATOR'];
 		
- 		self::$config['WEBSITE_IMG'] = "";
+		self::$config['WEBSITE_HOST'] = "http://" . $_SERVER['HTTP_HOST'];
+		if(!empty($_SERVER['REDIRECT_URL'])) {
+ 			self::$config['PAGING_URL'] = self::$config['WEBSITE_HOST'] . $_SERVER['REDIRECT_URL'];
+		}
+		self::$config['WEBSITE_URL'] = self::$config['WEBSITE_HOST'] . "/pricetag/public_html/";
 		
- 		self::$config['LAYOUT_DIR'] = Config::get('TEMPLATE_DIR') . "layout" . self::$config['DIR_SEPERATOR'];
- 		self::$config['PER_PAGE'] = 10;
- 		
+ 		self::$config['LAYOUT_DIR'] = self::$config['TEMPLATE_DIR'] . "layout" . self::$config['DIR_SEPERATOR'];
+ 		self::$config['PER_PAGE'] = 20;
+ 		self::$config['HOME_PAGE'] = "category/list";//set default home page
  		//self::loadCronProp();
 	}
 	

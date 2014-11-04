@@ -1,0 +1,62 @@
+@media only screen and (max-width: 1019px) {
+		.container						{  width:100%; padding:0 0%;}
+        }
+
+	/* Tablet Portrait size to standard 999 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {
+        
+        }
+
+	/* All Mobile Sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {
+		.header{display:none;}
+		.headermob{padding:2%;background:#ececec;width:96%;display:block;}
+		.headermob span.left{float:left;padding-top:12px;}
+		.headermob span.right{float:right;padding-top:12px;}
+		.headermob span.srch{float:right;padding:12px 20px 0px 0px;}
+		.headermob span.mid{text-align:center;display:block;}
+		.noticefu{width:98%;margin:0px;padding:1%;}
+		.rateu{display:none;}
+		.main-cont{padding:0%;}
+		.dash-menu ul{padding:0px 2%;}
+		.dash-menu ul.feture{width:96%;}
+		.feture li{background:none;padding:10px 0px;width:33%;}
+		.feture li.frst{display:none;}
+		.feture li.frstmob{display:block;color:#fff;background:#4BC3A4;margin:0px;padding-left:0px;}
+		.feture li a{font:normal 20px arial;}
+		.notRate{padding:1%;width:98%;}
+		.notRate div h3, .notRate div p{padding-left:0px;}
+		.notRate div h3{border:0px none;margin:0px;font-weight:normal;}
+		.h3web{display:none;}
+		.h3mob{display:block;}
+		.dashmangprodtab{display:block;}
+		.salsumr{padding:0%;}
+		.salsumr div{width:100%;margin:0px;}
+		.salsumr div h4{padding:10px 2%;background:url(../images/mob/mer-arrR.png) right center no-repeat;font:normal 20px arial;border-top:1px solid #f3f3f3;border-bottom:none;}
+		.salsumr div h4 cite{font:normal 14px arial;color:#4BC3A4;}
+		.salsumr div ul{display:none;}
+		.salsumr div.last h4{border:0px none;background:none;}
+		.hide{display:none;}
+		.show{display:inline-block;}
+		.mobprint, .mobmdispt{display:none;}
+		.ordetl-cont{margin:0px;}
+		.ordetl-cont ul{padding:1% 0%;width:100%;}
+		.ordetl-cont ul li{padding:10px 5px;}
+		.sub-menu, .sub-menu ul{width:98%;padding:1%;}
+		.sub-menu ul li.lasttxt{float:left;margin:0px;}
+		.sub-menu ul li a.last{background:none;padding:0px 5px 0px 5px;}
+		.ordetl-cont ul li{border-top:1px solid #E7E7E7;border-bottom:none;}
+		.ordetl-cont ul li p{float:right;}
+		.ordetl-cont ul li.unselected p.qtyb, .ordetl-cont ul li.unselected p.chkb{display:none;}
+		.ordetl-cont ul li.selected p.qtyb, .ordetl-cont ul li.selected p.chkb{display:none;}
+		.ordetl-cont ul li.selectedmob{display:block;}
+		.ordetl-cont ul li.selectedmob p.qtyb, .ordetl-cont ul li.selectedmob p.chkb{display:none;}
+		.ordetl-cont ul li.selectedmob p.printb{width:13.2%;background:url(../images/mob/unsprint-wbg.png) center center no-repeat;height:48px;}
+		.airwbillno{background:url(../images/mer-btnbg.png) left center repeat-x;border:1px solid #31A184;border-radius:6px;padding:5px;font-size:12px;width:128px;}
+		.ordetl-cont ul li.unselected p.printb{width:13.2%;background:url(../images/mob/print.png) center center no-repeat;height:46px;}
+		.ordetl-cont ul li.selected p.printb{width:13.2%;background:url(../images/mob/unsprint.png) center center no-repeat;height:48px;}
+		.ordetl-cont ul li p.titleb{width:65%;padding-right:.9%;color:#333;font:normal 18px arial;}
+		.ordetl-cont ul li p.orddb{width:20.6%;padding-top:20px;color:#A0A0A0;font-size:12px;}
+		.ordetl-cont ul li p.courdb, .ordetl-cont ul li p.airwbb{display:none;}
+		.ordetl-cont ul li p.titleb span.mob-courbilln{display:block;padding-bottom:5px;color:#A0A0A0;font-size:12px;}
+		}

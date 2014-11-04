@@ -5,6 +5,22 @@ require_once '../core/models/model.cron.import.php';
 class CronComponent {
 	
 	
+	static function plotCategories() {
+		$objImport = new CronProductImport ();;
+		$arrCat = $objImport->getDistinctCategories();
+		
+		foreach ($arrCat as $row) {
+			//$catDetails = $objImport->getCategoryDetails($row['prod_cat_1']);
+			//if(empty($catDetails) ) {
+			//	$arrParam = array (':category_name' => $row['prod_cat_1'], ':parent_cat_id' => 0, ':level' => 1);
+			$objImport->insertCategory($row['prod_cat_1'], '', 1);
+			$objImport->insertCategory($row['prod_cat_2'], $row['prod_cat_1'], 2);
+			$objImport->insertCategory($row['prod_cat_3'], $row['prod_cat_2'], 3);
+			//}
+		}
+	}
+	
+	
 	static function snapdealImport ($file = '') {
 		$flag = false;
 		
@@ -84,61 +100,83 @@ class CronComponent {
 					// $num = count ( $data );
 					$row ++;
 					if ($row == 1) {
+						
+						echo "<br>";
+						print_r($data);						
 						continue;
+					} else {
+						break;
 					}
 					
-					$productId = $data [0];
-					$title = $data [1];
-					$imageUrlStr = $data [2];
+					$count = 0;
+					$productId = $data [$count++];
+					$title = $data [$count++];
+					$desc = $data[$count++];
+					$imageUrlStr = $data [$count++];
 					
-					$mrpStr = explode ( ",", $data [3] );
-					$priceStr = explode ( ",", $data [4] );
+					$mrpStr = explode ( ",", $data [$count++] );
+					$priceStr = explode ( ",", $data [$count++] );
 					$mrp = $mrpStr [0];
 					$price = $priceStr [0];
 					
-					$productUrl = $data [5];
+					$productUrl = $data [$count++];
 					
-					$arrCatObj = json_decode ( $data [6] );
 					
+					$arrCatObj = json_decode ( $data [$count++] );
+						
 					$category1 = "";
 					$category2 = "";
 					$category3 = "";
 					/* if ($arrCatObj [0] != null) {
-						foreach ( $arrCatObj [0] as $key => $catObj ) {
-							$categories .= $catObj->title . "~";
-						}
-						$categories = trim ( $categories, "~" );
-					} */
+					 foreach ( $arrCatObj [0] as $key => $catObj ) {
+					 $categories .= $catObj->title . "~";
+					 }
+					 $categories = trim ( $categories, "~" );
+					 } */
+						
+					if(JSON_ERROR_NONE == json_last_error()) { 
+						if(!empty($arrCatObj [0][0]))
+							$category1 = $arrCatObj [0][0]->title;
+						if(!empty($arrCatObj [0][0]))
+							$category2 = $arrCatObj [0][1]->title;
+						if(!empty($arrCatObj [0][0]))
+							$category3 = $arrCatObj [0][2]->title;
+					} else {
+						$arrCatObj = explode(">", $data [$count++] );
+						
+						if(!empty($arrCatObj[0]))
+							$category1 = $arrCatObj [0];
+						if(!empty($arrCatObj [1]))
+							$category2 = $arrCatObj [1];
+						if(!empty($arrCatObj [2]))
+							$category3 = $arrCatObj [2];
+					}
+					$productBrand = $data [$count++];
+					$deliveryTime = $data [$count++];
+					$inStock = $data [$count++];
 					
-					if(!empty($arrCatObj [0][0]))
-						$category1 = $arrCatObj [0][0]->title;
-					if(!empty($arrCatObj [0][0]))
-						$category2 = $arrCatObj [0][1]->title;
-					if(!empty($arrCatObj [0][0]))
-						$category3 = $arrCatObj [0][2]->title;
+					$codAvailable = ($data [$count++] == "false") ? 0 : 1;
+					$emiAvailable = ($data [$count++] == "false") ? 0 : 1;
 					
-					$productBrand = $data [7];
-					$deliveryTime = $data [8];
-					$inStock = $data [9];
-					
-					$codAvailable = ($data [10] == "false") ? 0 : 1;
-					$emiAvailable = ($data [11] == "false") ? 0 : 1;
-					
-					$arrOfferObj = json_decode ( $data [12] );
+					$arrOfferObj = json_decode ( $data [$count++] );
 					$offer = "";
 					if ($arrOfferObj [0] != null)
 						$offer = $arrOfferObj [0]->title;
-					$discount = $data [13];
+					$discount = $data [$count++];
 					
-					$cashBackStr = explode ( ",", $data [14] );
+					$cashBackStr = explode ( ",", $data [$count++] );
 					$cashBack = $cashBackStr [0];
+					
+					$size = $data [$count++];
+					$color = $data [$count++];
+					
 					
 					$arrData = array (
 							':prod_code' => $productId,
 							':prod_name' => $title,
 							':prod_mrp' => $mrp,
 							':prod_price' => $price,
-							':prod_desc' => '',
+							':prod_desc' => $desc,
 							':prod_img' => $imageUrlStr,
 							':prod_brand' => $productBrand,
 							':prod_cat_1' => $category1,
@@ -152,8 +190,11 @@ class CronComponent {
 							':cash_back' => $cashBack,
 							':prod_owner' => 1
 					);
-					$objImport->importProduct ( $arrData );
-					$flag = true;
+					
+					if(($inStock == "true" || $inStock == true) && !empty($category1)) { 
+						$objImport->importProduct ( $arrData );
+						$flag = true;
+					}
 				}
 				//$objImport->close ();
 			}

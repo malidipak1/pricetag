@@ -13,7 +13,7 @@ Class DbMysql {
 			DbMysql::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			DbMysql::$db->exec("SET CHARACTER SET utf8");
 			//DbMysql::$db = $conn;		
-			echo "Created DB Connection....";
+			//echo "Created DB Connection....";
 		} catch(PDOException $e){
 			echo 'ERROR: ' . $e->getMessage();
 		}

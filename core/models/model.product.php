@@ -29,7 +29,6 @@ Class ProductModel extends Model{
 	
 	public function getCategoriesByParent($parentcatId = 0) {
 		$arrCatTree = array();
-		//echo $sql = "SELECT * FROM `products` where parent_cat_id = " . $parentcatId ;
 		$arrParam = array("parent_cat_id => $parentcatId");
 		$arrResult = $this->getAll($arrParam);
 		
@@ -53,8 +52,6 @@ Class ProductModel extends Model{
 				$arrParam = array('prod_cat_3' => $catName);
 				break;
 		}
-		//$whereClause = " prod_cat_" . $catLevel ." = '" . $catName . "'";
-		//$sql = "SELECT * FROM `products` where  " . $whereClause  . " limit 1," . $limit;
 		
 		$arrCatProd = $this->getAll($arrParam);
 		

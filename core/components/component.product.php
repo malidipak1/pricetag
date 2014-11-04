@@ -30,6 +30,7 @@ Class ProductComponent {
 
 		$objCatModel = new ProductModel();
 		$objCatModel->isPaging = true;
+		$objCatModel->pagingPerPage = 4;
 		$return_array['product_list'] = $objCatModel->getProductTopByCategory($catName, $catLevel, $limit);
 
 
