@@ -101,6 +101,54 @@ Class Model {
 		return $whereClause;
 	}
 	
+	public function query($sql = '') {
+		$arrReturn = array();
+		
+		if($this->isPaging) {
+			if($this->pagingPerPage == 0) {
+				$perPage = Config::get('PER_PAGE');
+			} else {
+				$perPage = $this->pagingPerPage;
+			}
+			//$totalCount = $this->getCount($sql);
+			$stmt = $this->dbConn->query($sql);
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$totalCount = count($result);
+			
+			$arrOffset = Utilities::getPagingOffset();
+			$page = $arrOffset['page'];
+			$offSet = $arrOffset['offset'];
+				
+			$recLeft = $totalCount - ($page * $perPage);
+				
+			$arrReturn['total_count'] = $totalCount;
+			$arrReturn['page'] = $page;
+			$arrReturn['offset'] = $offSet;
+			$arrReturn['per_page'] = $perPage;
+			$arrReturn['record_left'] = $recLeft;
+			$arrReturn['first_page'] = 1;
+			$arrReturn['last_page'] = ceil($totalCount / $perPage);
+				
+			/* if( $page > 0 ) {
+			 $last = $page - 2;
+			 echo "<a href=\"$_PHP_SELF?page=$last\">Last 10 Records</a> |";
+			 echo "<a href=\"$_PHP_SELF?page=$page\">Next 10 Records</a>";
+			 } else if( $page == 0 ) {
+			 echo "<a href=\"$_PHP_SELF?page=$page\">Next 10 Records</a>";
+			 } else if( $left_rec < $perPage ) {
+			 $last = $page - 2;
+			 echo "<a href=\"$_PHP_SELF?page=$last\">Last 10 Records</a>";
+			} */
+				
+			$sql .= " limit " . $offSet . ", " . $perPage;
+		}
+		
+		
+		$stmt = $this->dbConn->query($sql);
+		$arrReturn['result'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $arrReturn;;
+	}
+	
 }
 
 ?>

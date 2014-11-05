@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
  <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
+  <meta name="Keywords" content="Price tag, prices, price, mobile, laptop, computer, computer & accessories, laptop & accessories, home & kitchen, gaming, toy">
   <meta name="Description" content="">
-  <title>Document</title>
+  <meta name="og_title" property="og:title" content=""/>
+<meta name="og_site_name" property="og:site_name" content=""/>
+<meta property="og:description" content="price tag, easy and simple way to find and compare products at the best prices, Reviews Product, Compare Prices and lot more" />
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+  <title>Lowest Price Tags of the product in India</title>
   <link rel="stylesheet" type="text/css" href="<?=Config::get('WEBSITE_URL')?>css/style.css">
  </head>
  <body>
