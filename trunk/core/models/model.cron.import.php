@@ -93,7 +93,7 @@ Class CronProductImport extends Model{
 			}
 			$data = array (':category_name' => $catName, ':parent_cat_id' => $parent_cat_id, ':level' => $level);
 			
-			echo "<BR>" . $sql = "INSERT INTO `categories` ( `category_name`, `parent_cat_id`, `level`) VALUES (:category_name, :parent_cat_id, :level)" . $catName . " -> " . $parent_cat_id . " -> " . $level;
+			//echo "<BR>" . $sql = "INSERT INTO `categories` ( `category_name`, `parent_cat_id`, `level`) VALUES (:category_name, :parent_cat_id, :level)" . $catName . " -> " . $parent_cat_id . " -> " . $level;
 			$sql = "INSERT INTO `categories` ( `category_name`, `parent_cat_id`, `level`) VALUES (:category_name, :parent_cat_id, :level)";
 			
 			$stmt = $this->dbConn->prepare($sql);

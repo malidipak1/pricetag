@@ -58,6 +58,25 @@ Class ProductModel extends Model{
 		return $arrCatProd;;
 	}
 	
+	public function getProductDetail($prodId) {
+		$arrProduct = array();
+		$arrParam = array('prod_id' => $prodId);
+		
+		$arrProduct = $this->getRow($arrParam);
+		
+		return $arrProduct;
+		
+	}
+	
+	public function getProductByBrand($brandId = '') {
+		$arrProduct = array();
+		
+		$sql = "select * from products where prod_brand like '"  . $brandId . "'";
+		$arrProduct = $this->query($sql);
+		
+		return $arrProduct;
+		
+	}
 	
 	
 }

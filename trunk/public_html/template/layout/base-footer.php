@@ -9,7 +9,7 @@
 	<i class="clear"></i>
 	<div class="footerr">
 		<div class="containerr">
-			<span>Site powered by shikha<br/>Home | Contact Us | About Us</span>
+			<span>Site powered by shikha<br/><a href="<?=Config::get('WEBSITE_URL')?>">Home </a>| <a href="<?=Config::get('WEBSITE_URL')?>pages/contact">Contact Us</a> | <a href="<?=Config::get('WEBSITE_URL')?>pages/about">About Us</a></span>
 			<cite>Copyright 2014</cite>
 		</div>
 	</div>

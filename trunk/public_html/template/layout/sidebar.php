@@ -8,7 +8,7 @@
 				<div class="catcont">
 					<h2>BROWSE</h2>
 					<?php foreach ($result['result'] as $catDetails) { 
-						$catLink = Config::get('WEBSITE_URL') . "category/view/id/" . $catDetails['category_id'] . "/name/" . urlencode($catDetails['category_name']) . "/";
+						$catLink = Config::get('WEBSITE_URL') . "category/view/id/" . $catDetails['category_id'] . "/name/" . Utilities::urlencode($catDetails['category_name']) . "/";
 						?>
 						
 						<cite class="mar7"><img src="<?=Config::get('WEBSITE_URL')?>images/catarr.jpg" />&#160;

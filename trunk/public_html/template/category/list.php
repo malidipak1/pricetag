@@ -12,7 +12,7 @@ $arrReturn = $objCat->getCategoryTree();
 	
 foreach ($arrReturn as $catKey => $arrSubCat) {
 	$catName = explode("-", $catKey);
-	$catLink = Config::get('WEBSITE_URL') . "category/view/id/" . $catName[0] . "/name/" . urlencode($catName[1]) . "/";
+	$catLink = Config::get('WEBSITE_URL') . "category/view/id/" . $catName[0] . "/name/" . Utilities::urlencode($catName[1]) . "/";
 ?>
 <div class="categoryList">
 	<cite class="l1"><a href="<?=$catLink?>"><?=$catName[1]?></a></cite><br/>
@@ -20,13 +20,13 @@ foreach ($arrReturn as $catKey => $arrSubCat) {
 	//echo " --> " . $catKey;
 	foreach ($arrSubCat as $subCatKey => $arrCatList) {
 		$subCatName = explode("-", $subCatKey);
-		$subCatLink = Config::get('WEBSITE_URL') . "category/view/id/" . $subCatName[0] . "/name/" . urlencode($subCatName[1]) . "/";
+		$subCatLink = Config::get('WEBSITE_URL') . "category/view/id/" . $subCatName[0] . "/name/" . Utilities::urlencode($subCatName[1]) . "/";
 ?>
 		<cite class="l2"><a href="<?=$subCatLink?>"><?=$subCatName[1]?></a></cite><br/>
 <?php 	
 		foreach ($arrCatList as $strCatDetails) {
 			$strCatName = explode("-", $strCatDetails);
-			$strCatLink = Config::get('WEBSITE_URL') . "category/view/id/" . $strCatName[0] . "/name/" . urlencode($strCatName[1]) . "/";
+			$strCatLink = Config::get('WEBSITE_URL') . "category/view/id/" . $strCatName[0] . "/name/" . Utilities::urlencode($strCatName[1]) . "/";
 ?>	
 				<cite class="l3"><a href="<?=$strCatLink?>"><?=$strCatName[1]?></a></cite><br/>
 <?php 
