@@ -100,13 +100,12 @@ class CronComponent {
 					// $num = count ( $data );
 					$row ++;
 					if ($row == 1) {
-						
-						echo "<br>";
-						print_r($data);						
 						continue;
-					} else {
+					} /* else {
 						break;
-					}
+					} */
+					
+					//print_r($data);
 					
 					$count = 0;
 					$productId = $data [$count++];
@@ -121,8 +120,8 @@ class CronComponent {
 					
 					$productUrl = $data [$count++];
 					
-					
-					$arrCatObj = json_decode ( $data [$count++] );
+					$catStr = $data [$count++];
+					$arrCatObj = json_decode ( $catStr );
 						
 					$category1 = "";
 					$category2 = "";
@@ -142,7 +141,8 @@ class CronComponent {
 						if(!empty($arrCatObj [0][0]))
 							$category3 = $arrCatObj [0][2]->title;
 					} else {
-						$arrCatObj = explode(">", $data [$count++] );
+						$catStr = explode(";", $catStr);
+						$arrCatObj = explode(">",$catStr[0]);
 						
 						if(!empty($arrCatObj[0]))
 							$category1 = $arrCatObj [0];

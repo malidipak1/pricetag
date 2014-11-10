@@ -10,12 +10,14 @@ class PagesModel extends Model {
 		$flag = false;
 		if(!empty($data[':email'])) {
 			$sql = "INSERT INTO `pricetag`.`contact_us` ( `name`, `email`, `subject`, `requirement`) VALUES ( :name, :email, :subject, :requirement)";
-			$stmt = $this->dbConn->prepare($sql);
+			$this->executeUpdate($sql, $data);
+			
+			/* $stmt = $this->dbConn->prepare($sql);
 			
 			foreach ($data as $key => $val) {
 				$stmt->bindValue($key, $val); // should not use bindParam();
 			}
-			$stmt->execute();
+			$stmt->execute(); */
 			$flag = true;
 		}
 		return $flag;

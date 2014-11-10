@@ -13,6 +13,7 @@ $arrSubCategory = $arrReturn['sub_category']['result'];
 	if($catLevel == 1) {
 		include_once Config::get('TEMPLATE_DIR') . 'category/cat_wise_product.php';
 	} else if($catLevel == 2) {
+		
 		include_once Config::get('TEMPLATE_DIR') . 'category/cat_wise_product.php';
 		/* if(count($arrSubCategory) == 1) {
 			

@@ -75,6 +75,31 @@ body							{ overflow-x:hidden; background:#fff; display:block;}
 .footer span				{float:left;font:normal 10px arial;}
 .footer cite				{float:right;font:normal 10px arial;}
 .footerr a		 			{color:#7e7e7e;}
+.link {
+	text-align: right; float: right;
+}
+
+.share-meta {
+    margin-top: 20px;
+    min-height: 36px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.offer-getcode .btn {
+	background:#ed1c24;
+	border-radius:6px;
+	border: medium none;
+	cursor: pointer;
+	outline: medium none;
+	width: 100px;
+	text-align: center;
+	font:bold 16px arial, verdana, sans-serif, FreeSans;
+	color:#fff;
+	padding:5px 10px;
+}
+
+
+
 
 /* inner page css */
 .actprodcat{float:left;width:100%;}
@@ -195,7 +220,7 @@ body							{ overflow-x:hidden; background:#fff; display:block;}
 
 .page {
     display: inline-block;
-    padding: 0px 10px;
+    padding: 0px 5px;
     margin-right: 4px; margin-left: 4px;
     border-radius: 10px; 
     border: solid 1px #c0c0c0;

@@ -16,9 +16,12 @@ $lastPage = $arrTopProd['product_list']['last_page'];
 $offset = $arrTopProd['product_list']['offset'];
 $perPage = $arrTopProd['product_list']['per_page'];
 $recLeft = $arrTopProd['product_list']['record_left'];
+$totalCount = $arrTopProd['product_list']['total_count'];
+
 //print_r($arrTopProd['product_list']);
 ?><div class="actprodcat">
 		<div class="prodcont">
+		<div class="title"> <a href="#"><?=$catName?></a> (<?=$totalCount?> Products)</div>
 		<?php foreach ($result as $prodDetails) {
 			$prodImg = explode(",", $prodDetails['prod_img']);
 			if(strlen($prodDetails['prod_name']) <= 52) {

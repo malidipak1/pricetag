@@ -101,7 +101,7 @@ Class Model {
 		return $whereClause;
 	}
 	
-	public function query($sql = '') {
+	public function executeQuery($sql = '') {
 		$arrReturn = array();
 		
 		if($this->isPaging) {
@@ -148,6 +148,19 @@ Class Model {
 		$arrReturn['result'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $arrReturn;;
 	}
+
+	public function executeUpdate($sql, $data) {
+		
+		$stmt = $this->dbConn->prepare($sql);
+			
+		foreach ($data as $key => $val) {
+			$stmt->bindValue($key, $val); // should not use bindParam();
+		}
+		return $stmt->execute();
+		
+	}
+	
+	
 	
 }
 
