@@ -72,7 +72,7 @@ Class ProductModel extends Model{
 		$arrProduct = array();
 		
 		$sql = "select * from products where prod_brand like '"  . $brandId . "'";
-		$arrProduct = $this->query($sql);
+		$arrProduct = $this->executeQuery($sql);
 		
 		return $arrProduct;
 		
