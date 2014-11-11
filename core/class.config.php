@@ -25,6 +25,7 @@ Class Config {
  			self::$config['PAGING_URL'] = self::$config['WEBSITE_HOST'] . $_SERVER['REDIRECT_URL'];
 		}
 		self::$config['WEBSITE_URL'] = self::$config['WEBSITE_HOST'] . "/pricetag/public_html/";
+		self::$config['ADMIN_PANEL_URL'] =self::$config['WEBSITE_URL'] . "admin/";
 		
  		self::$config['LAYOUT_DIR'] = self::$config['TEMPLATE_DIR'] . "layout" . self::$config['DIR_SEPERATOR'];
  		self::$config['PER_PAGE'] = 20;

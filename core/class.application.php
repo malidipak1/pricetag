@@ -5,7 +5,9 @@ class Application {
 	
 	public function loadConfig() {
 		require_once 'class.config.php';
+		require_once 'class.url.config.php';
 		Config::load();
+		UrlConfig::load();
 	}
 	
 	
