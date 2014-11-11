@@ -136,10 +136,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Manage Coupon  <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="<?=Config::get('WEBSITE_URL')?>admin/coupon/add">Add Coupons </a>
+                                <a href="<?=UrlConfig::get('ADMIN_COUPON_ADDEDIT')?>">Add Coupons </a>
                             </li>
                             <li>
-                                <a href="<?=Config::get('WEBSITE_URL')?>admin/coupon/view">View Coupon</a>
+                                <a href="<?=UrlConfig::get('ADMIN_COUPON_LIST')?>">List Coupon</a>
                             </li>
                         </ul>
                     </li>
