@@ -4,7 +4,7 @@
 			class="offer-big offer sms-parent col-24">
 			<div class="col-18 ">
 				<div class="offer-title" id="c94911">
-					<a class="coupon-click mouse-pointer" href="<?=Config::get('WEBSITE_URL')?>go/coupon/">Flat 40% off on Hotel Bookings</a>
+					<a class="coupon-click mouse-pointer" href="<?=Config::get('WEBSITE_URL')?>go/coupon/id">Flat 40% off on Hotel Bookings</a>
 				</div>
 				<div class="offer-description">Get flat 40% off on all hotel bookings (domestic &amp; international).</div>
 			</div>
@@ -17,7 +17,7 @@
 					<div class="btn btn-cd btn-coupon coupon-click">GET CODE</div>
 				</div> -->
 			</div>
-			<div class="offer-meta">
+			<!-- <div class="offer-meta">
 				<div class="col-18 ">
 					<div class="share-meta">
 						<span class='st_sharethis' displayText='ShareThis'></span>
@@ -31,7 +31,7 @@
 				</div>
 				
 
-			</div>
+			</div> -->
 
 
 

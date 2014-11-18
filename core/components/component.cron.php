@@ -1,22 +1,27 @@
 <?php
-require_once '../core/lib/class.db.mysql.php';
-require_once '../core/models/model.cron.import.php';
+require_once INCLUDE_DIR . '/core/lib/class.db.mysql.php';
+require_once INCLUDE_DIR . '/core/models/model.cron.import.php';
 
 class CronComponent {
 	
 	
 	static function plotCategories() {
-		$objImport = new CronProductImport ();;
+		$objImport = new CronProductImport ();
+		$objImport->inActivateCategories();
+		
 		$arrCat = $objImport->getDistinctCategories();
 		
 		foreach ($arrCat as $row) {
-			//$catDetails = $objImport->getCategoryDetails($row['prod_cat_1']);
-			//if(empty($catDetails) ) {
-			//	$arrParam = array (':category_name' => $row['prod_cat_1'], ':parent_cat_id' => 0, ':level' => 1);
+	
 			$objImport->insertCategory($row['prod_cat_1'], '', 1);
-			$objImport->insertCategory($row['prod_cat_2'], $row['prod_cat_1'], 2);
-			$objImport->insertCategory($row['prod_cat_3'], $row['prod_cat_2'], 3);
-			//}
+			
+			if(!empty($row['prod_cat_2'])) {
+				$objImport->insertCategory($row['prod_cat_2'], $row['prod_cat_1'], 2);
+			}
+			
+			if(!empty($row['prod_cat_3'])) {
+				$objImport->insertCategory($row['prod_cat_3'], $row['prod_cat_2'], 3);
+			}
 		}
 	}
 	

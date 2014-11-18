@@ -9,6 +9,7 @@ Class CategoryModel extends Model{
 	
 	public function getCategoryList($param = array()) {
 		
+		
 		$arrResult = $this->getAll($param);
 		
 		//print_r($arrResult);
@@ -18,7 +19,7 @@ Class CategoryModel extends Model{
 	
 	public function getCategory($catId = 0) {
 		
-		$arrParam = array('category_id' => $catId);
+		$arrParam = array('category_id' => $catId, 'active' => 1);
 		$arrResult = $this->getRow($arrParam);
 		return $arrResult;
 	}
@@ -26,7 +27,7 @@ Class CategoryModel extends Model{
 	
 	public function getCategoriesByParent($parentcatId = 0) {
 		$arrCatTree = array();
-		$arrParam = array('parent_cat_id' => $parentcatId);
+		$arrParam = array('parent_cat_id' => $parentcatId, 'active' => 1);
 		$arrResult = $this->getAll($arrParam);
 		
 		return $arrResult;;

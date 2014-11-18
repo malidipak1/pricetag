@@ -62,13 +62,15 @@ Class CronProductImport extends Model{
 	}
 	
 	public function getDistinctCategories() {
-		$sql = "SELECT distinct prod_cat_3, prod_cat_2, prod_cat_1 FROM `products` where prod_cat_3 is not null and prod_cat_3 <> '' ";
+		//$sql = "SELECT distinct prod_cat_3, prod_cat_2, prod_cat_1 FROM `products` where prod_cat_3 is not null and prod_cat_3 <> '' ";
+		$sql ="SELECT distinct prod_cat_3, prod_cat_2, prod_cat_1 FROM `products` ";
 		$stmt = $this->dbConn->query($sql);
 		$arrReturn = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		
 		return $arrReturn;
 		
 	}
+	
 	
 	public function getCategoryDetails ($catName = '', $level = 1) {
 		$this->table = "categories";
@@ -91,10 +93,10 @@ Class CronProductImport extends Model{
 				print_r($s);
 				$parent_cat_id = $s['category_id'];
 			}
-			$data = array (':category_name' => $catName, ':parent_cat_id' => $parent_cat_id, ':level' => $level);
+			$data = array (':category_name' => $catName, ':parent_cat_id' => $parent_cat_id, ':level' => $level, ':active' => 1);
 			
 			//echo "<BR>" . $sql = "INSERT INTO `categories` ( `category_name`, `parent_cat_id`, `level`) VALUES (:category_name, :parent_cat_id, :level)" . $catName . " -> " . $parent_cat_id . " -> " . $level;
-			$sql = "INSERT INTO `categories` ( `category_name`, `parent_cat_id`, `level`) VALUES (:category_name, :parent_cat_id, :level)";
+			$sql = "INSERT INTO `categories` ( `category_name`, `parent_cat_id`, `level`, `active`) VALUES (:category_name, :parent_cat_id, :level, :active)";
 			
 			$stmt = $this->dbConn->prepare($sql);
 			
@@ -103,9 +105,24 @@ Class CronProductImport extends Model{
 			}
 			$stmt->execute();
 			//echo "Inserted category..." . $data[':prod_code'];
+		} else {
+			$this->activateCategory($catDetails['category_id']);
 		}
 	}
 	
+	public function activateCategory($catId =0) {
+		$sql = "UPDATE `categories` SET `active` = '1' where category_id = " . $catId;
+			
+			$stmt = $this->dbConn->prepare($sql);
+			$stmt->execute();;
+	}
+	
+	public function inActivateCategories() {
+			$sql = "UPDATE `categories` SET `active` = '0'";
+			
+			$stmt = $this->dbConn->prepare($sql);
+			$stmt->execute();
+	}
 	
 }
 
