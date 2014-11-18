@@ -2,9 +2,9 @@
 	<!--Start Sidebar-->
 		<?php include_once Config::get('LAYOUT_DIR') . 'sidebar.php';?>
 	<!--End Sidebar-->
-		</div>	
+		 </div>	
 			</div>	
-		</div>
+		</div> 
 	</div>
 	<i class="clear"></i>
 	<div class="footerr">
@@ -15,7 +15,7 @@
 		</div>
 		
 	</div>
-  </div>
+  <!-- </div> -->
  </body>
 </html>
 <?php //include_once Config::get('LAYOUT_DIR') . 'footer.php';

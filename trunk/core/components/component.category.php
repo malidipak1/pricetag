@@ -8,7 +8,8 @@ Class CategoryComponent {
 		$return_array = array();
 		
 		$objCatModel = new CategoryModel();
-		$arrParam = array('parent_cat_id' => 0);
+		$arrParam = array('parent_cat_id' => 0, 'active' => 1);
+		
 		$return_array = $objCatModel->getCategoryList($arrParam);
 		return $return_array;
 	}

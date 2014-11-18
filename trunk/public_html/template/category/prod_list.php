@@ -31,7 +31,17 @@ $totalCount = $arrTopProd['product_list']['total_count'];
 			}
 			$prodUrl = Config::get('WEBSITE_URL') . "product/view/id/" . $prodDetails['prod_id'] . "/name/" . Utilities::urlencode($prodDetails['prod_name']);
 		?>
-			<div class="prodiv">
+<!-- 		<div class="grid_1_of_4 images_1_of_4">
+					<a href="<?=$prodUrl?>"><img  alt="<?=$prodDetails['prod_name']?>" title="<?=$prodDetails['prod_name']?>" src="<?=$prodImg[0]?>" /></a>
+					 <div class="discount">
+					 <span class="percentage">40%</span>
+					</div>
+					 <h2>Lorem Ipsum is simply </h2>
+					 <p><span class="strike">$438.99</span><span class="price">$403.66</span></p>
+				     <div class="button"><span><img alt="" src="images/cart.jpg"><a class="cart-button" href="preview-3.html">Add to Cart</a></span> </div>
+				     <div class="button"><span><a class="details" href="preview-3.html">Details</a></span></div>
+				</div>-->
+			 <div class="prodiv">
 				<a href="<?=$prodUrl?>"><img  alt="<?=$prodDetails['prod_name']?>" title="<?=$prodDetails['prod_name']?>" src="<?=$prodImg[0]?>" /></a><br/>
 				<cite class="ttl" title="<?=$prodDetails['prod_name']?>"><a href="<?=$prodUrl?>"><?=$prodTitle?></a></cite><br/>
 				<cite class="ttl">

@@ -9,9 +9,11 @@
 <META http-equiv=Content-Type content="text/html; charset=UTF-8">
   <title>Lowest Price Tags of the product in India</title>
   <link rel="stylesheet" type="text/css" href="<?=Config::get('WEBSITE_URL')?>css/style.css">
-<script type="text/javascript">var switchTo5x=true;</script>
+  <link rel="stylesheet" type="text/css" href="<?=Config::get('WEBSITE_URL')?>css/style.2.css">
+<!-- <script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "fb4e0876-ee66-4199-aafd-d052b77c627d", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+-->
  </head>
  <body>
   <div class="wrapper">

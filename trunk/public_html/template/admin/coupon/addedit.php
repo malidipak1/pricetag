@@ -39,6 +39,15 @@ $couponRow = $return_array['coupon_row'];
 					
                         <form role="form" method="post">
 
+                        <div class="form-group">
+                                <label>Coupon for</label>
+                                <select class="form-control">
+                                    <option>--SELECT--</option>
+                                    <?php foreach ($arrSites as $site) {?>
+                                    	<option value="<?=site['owner_id']?>"><?=site['owner_name']</option>
+                                   <?php } ?>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Coupon Title</label>
                                 <input class="form-control" name="coupon_title" value="<?=$couponRow['coupon_title']?>">
