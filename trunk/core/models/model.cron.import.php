@@ -124,6 +124,13 @@ Class CronProductImport extends Model{
 			$stmt->execute();
 	}
 	
+	public function inActivateBrands() {
+		$sql = "UPDATE `brands` SET `active` = '0'";
+			
+		$stmt = $this->dbConn->prepare($sql);
+		$stmt->execute();
+	}
+	
 }
 
 ?>

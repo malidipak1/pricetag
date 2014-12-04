@@ -38,7 +38,7 @@ foreach ($fileList as $file) {
 	}
 }
 
-
-CronComponent::plotCategories();
+CronComponent::plotBrands();
+//CronComponent::plotCategories();
 
 ?>

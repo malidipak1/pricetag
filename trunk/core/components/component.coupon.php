@@ -12,16 +12,17 @@ class CouponComponent {
 		
 		$objModel = new CouponModel();
 		if(!empty($_POST)) {
-			
+		
 			$couponId = $_POST['coupon_id'];
 			$couponTitle = $_POST['coupon_title'];
 			$couponDesc = $_POST['coupon_desc'];
 			$couponLink = $_POST['coupon_link'];
 			$couponCode = $_POST['coupon_code'];
-			if($couponId > 0) {
-				$return_array['form_flag'] = $objModel->addCoupon($couponTitle, $couponDesc,$couponCode, $couponLink);
+			$couponSite = $_POST['coupon_site'];
+			if($couponId <= 0) {
+				$return_array['form_flag'] = $objModel->addCoupon($couponTitle, $couponDesc,$couponCode, $couponLink, $couponSite);
 			} else {
-				$return_array['form_flag'] = $objModel->updateCoupon($couponId, $couponTitle, $couponDesc,$couponCode, $couponLink);
+				$return_array['form_flag'] = $objModel->updateCoupon($couponId, $couponTitle, $couponDesc,$couponCode, $couponLink, $couponSite);
 			}			
 		} 
 		

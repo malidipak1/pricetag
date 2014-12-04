@@ -2,13 +2,13 @@
 require_once Config::get('COMPONENT_DIR') . 'component.pages.php';
 $flag = false;
 if(!empty($_POST)) {
-	$objContact = new UserComponent(); 
+	$objContact = new PagesComponent(); 
 	$flag = $objContact->contactUs($_POST);
 }
 ?>
 
-<div class="prodcont">
-<script>
+<div class="home">
+	<script>
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
 		
 	function contVal()
@@ -54,32 +54,33 @@ if(!empty($_POST)) {
 	}
 	</script>
 
-					<h3>Contact Us</h3>
-					<div class="marT10 contact_us">
+	<h3>Contact Us</h3>
+	<div class="contactform">
 					<?php if ($flag) {?>
-						<div class="error">Thank you for your interest. We will get back to you shortly as soon as possible. </div>
-						<div class="clear">&nbsp;</div>
+						<div class="error">Thank you for your interest. We will get back
+			to you shortly as soon as possible.</div>
+		<div class="clear">&nbsp;</div>
 					<?php } else {?>
 						
-						<form action="" method="post" name="contform" id="contform">
-						  <div>
-							<div>
-							  <input class="input" type="text" name="fname" id="fname"  placeholder="Enter Name">
-							</div>
-							<div class="marT10">
-							  <input class="input" type="text" name="email" id="email"  placeholder="Enter Email id">
-							</div>	
-							<div class="marT10">
-							  <input class="input" type="text" name="subject" id="subject"  placeholder="Enter Subject">
-							</div>							
-							<div class="marT10">
-							  <textarea class="text" cols="12" rows="50" name="comm" id="comm" placeholder="Enter your requirement" ></textarea>
-							</div>
-							<div class="marT10 floatR">
-							  <input type="button" value="PLACE YOUR REQUEST" class="btn"  onclick="return contVal();">
-							</div>
-						  </div>					  
-						</form>
+						<form action="#" method="post" id="contactform" class="contactform">
+			<div class="error"></div>
+			<div class="cu_field">
+				<label for="cu_name">Name:</label> <input type="text" name="cu_name" id="cu_name">
+			</div>
+			<div class="cu_field">
+				<label for="cu_email">Email:</label> <input type="text" name="cu_email" id="cu_email">
+			</div>
+			<div class="cu_field">
+				<label for="cu_sub">Subject:</label> <input type="text" name="cu_sub" id="cu_sub">
+			</div>
+			<div class="cu_field">
+				<label for="cu_msg">Message:</label>
+				<textarea name="cu_msg" id="cu_msg"></textarea>
+			</div>
+			<div class="cu_field">
+				<label for="cu_submit">&nbsp;</label> <input type="submit" onclick="return contVal();" value="Submit" class="button biggest darker" id="cu_submit">
+			</div>
+		</form>
 						<?php }?>
 					</div>
-				</div>
+</div>

@@ -1,6 +1,5 @@
 <?php
 class Application {
-
 	
 	
 	public function loadConfig() {

@@ -5,6 +5,26 @@ require_once INCLUDE_DIR . '/core/models/model.cron.import.php';
 class CronComponent {
 	
 	
+	static function plotBrands() {
+		$objImport = new CronProductImport ();
+		$objImport->inActivateBrands();
+	
+		$arrCat = $objImport->getDistinctCategories();
+	
+		foreach ($arrCat as $row) {
+	
+			$objImport->insertCategory($row['prod_cat_1'], '', 1);
+				
+			if(!empty($row['prod_cat_2'])) {
+				$objImport->insertCategory($row['prod_cat_2'], $row['prod_cat_1'], 2);
+			}
+				
+			if(!empty($row['prod_cat_3'])) {
+				$objImport->insertCategory($row['prod_cat_3'], $row['prod_cat_2'], 3);
+			}
+		}
+	}
+	
 	static function plotCategories() {
 		$objImport = new CronProductImport ();
 		$objImport->inActivateCategories();
@@ -102,6 +122,8 @@ class CronComponent {
 				$objImport = new CronProductImport ();
 				
 				while ( ($data = fgetcsv ( $handle )) !== FALSE ) {
+					
+					$isValid = true;
 					// $num = count ( $data );
 					$row ++;
 					if ($row == 1) {
@@ -110,13 +132,16 @@ class CronComponent {
 						break;
 					} */
 					
-					//print_r($data);
-					
 					$count = 0;
 					$productId = $data [$count++];
 					$title = $data [$count++];
 					$desc = $data[$count++];
 					$imageUrlStr = $data [$count++];
+					
+					if(!filter_var($imageUrlStr, FILTER_VALIDATE_URL)) {
+						$isValid = false;
+						continue;
+					}
 					
 					$mrpStr = explode ( ",", $data [$count++] );
 					$priceStr = explode ( ",", $data [$count++] );
@@ -124,6 +149,10 @@ class CronComponent {
 					$price = $priceStr [0];
 					
 					$productUrl = $data [$count++];
+					if(!filter_var($productUrl, FILTER_VALIDATE_URL)) {
+						$isValid = false;
+						continue;
+					}
 					
 					$catStr = $data [$count++];
 					$arrCatObj = json_decode ( $catStr );

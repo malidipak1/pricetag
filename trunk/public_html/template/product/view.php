@@ -7,99 +7,188 @@ $result = $objProd->getProductDetails($prodId);
 $prodDetails = $result;
 $prodImg = explode(",", $prodDetails['prod_img']);
 //print_r($result);
-?><div class="actprodcat">
-	<title><?=$prodDetails['prod_name']?></title>
-				<div class="prodcont">
-					<div class="breadcrum"><?=$prodDetails['prod_cat_1']?> >> <?=$prodDetails['prod_cat_2']?> >> <?=$prodDetails['prod_cat_3']?></div>
-					<div class="h_divider">&#160;</div>
-					<div class="clear"></div>
-					<div class="proddetails">
-					<div class="cont-desc span_1_of_2">				
+$imgCOD = ($prodDetails['is_cod'] == 1) ? "yes.png": "no.png";
+$imgEMI = ($prodDetails['is_emi'] == 1) ? "yes.png": "no.png";
+
+$imgCOD = Config::get('WEBSITE_URL') . "images/" . $imgCOD;
+$imgEMI = Config::get('WEBSITE_URL') . "images/" . $imgEMI;
+?>
+
+
+<div class="main">
+    <div class="content">
+    	<div class="content_top">
+    		<div class="back-links">
+    		<p><a href="<?=Config::get('WEBSITE_URL')?>">Home</a> &gt;&gt; <a href="#">Electronics</a></p>
+    	    </div>
+    		<div class="sort">&nbsp;</div>
+    		<div class="show">&nbsp;</div>
+    		<div class="page-no">&nbsp;</div>
+    		<div class="clear"></div>
+    	</div>
+    	<div class="section group">
+				<div class="cont-desc span_1_of_2">				
 					<div class="grid images_3_of_2">
-						<a target="_blank" href="<?=Config::get('WEBSITE_URL')?>go/<?=$prodDetails['prod_code']?>"><img title="<?=$prodDetails['prod_name']?>" alt="<?=$prodDetails['prod_name']?>" src="<?=$prodImg[0]?>" /></a>
+						<img alt="<?=$result['prod_name']?>" src="<?=$prodImg[0]?>">
 					</div>
-					
-				<div class="desc span_2_of_2">
-					<h2><?=$prodDetails['prod_name']?> </h2>
-					<p><?=$prodDetails['prod_desc']?></p>					
-					
-					<!-- <div class="available">
-						<p>Available Options :</p>
-					<ul>
-						<li>Color:
-							<select>
-							<option>Silver</option>
-							<option>Black</option>
-							<option>Dark Black</option>
-							<option>Red</option>
-						</select></li>
-						<li>Size:<select>
-							<option>Large</option>
-							<option>Medium</option>
-							<option>small</option>
-							<option>Large</option>
-							<option>small</option>
-						</select></li>
-						<li>Quality:<select>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-						</select></li>
-					</ul>
-					</div> -->
-					<!-- <div class="share">
-						<p>Share Product :</p>
+				<div class="desc span_3_of_2">
+					<h2><?=$result['prod_name']?></h2>
+					<p>&nbsp;<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do  eiusmod tempor incididunt ut labore. Lorem ipsum dolor sit amet, 
+						consectetur adipisicing elit, sed do eiusmod tempor incididunt ut  labore. --></p>					
+					<div class="price">
+						<p>Price: <?php if(!empty($prodDetails['prod_mrp'])) {?><strike>Rs. <?=$prodDetails['prod_mrp']?></strike><?php } ?>
+						<span>Rs. <?=$prodDetails['prod_price']?></span></p>
+					</div>
+					<div class="available">
+						<p><!-- Available Options : --> &nbsp;</p>
 						<ul>
-					    	<li><a href="#"><img alt="" src="images/youtube.png"></a></li>
-					    	<li><a href="#"><img alt="" src="images/facebook.png"></a></li>
-					    	<li><a href="#"><img alt="" src="images/twitter.png"></a></li>
-					    	<li><a href="#"><img alt="" src="images/linkedin.png"></a></li>
-			    		</ul>
+							<li><img width="15px" src="<?=$imgCOD?>" />&nbsp; COD</li>
+							<li><img width="15px" src="<?=$imgEMI?>" />&nbsp; EMI</li>
+							<li> &nbsp;</li>
+						</ul>
+					</div> 
+					 <div class="share">&nbsp;
+					<!--	<p>Share Product :</p>
+						<ul>
+					    	<li><a href="#"><img alt="" src="img/youtube.png"></a></li>
+					    	<li><a href="#"><img alt="" src="img/facebook.png"></a></li>
+					    	<li><a href="#"><img alt="" src="img/twitter.png"></a></li>
+					    	<li><a href="#"><img alt="" src="img/linkedin.png"></a></li>
+			    		</ul>-->
+					</div> 
+				<div class="add-cart">
+					<!-- <div class="rating">
+						<p>Rating:<img alt="" src="img/rating.png"><span>[3 of 5 Stars]</span></p>
 					</div> -->
-	
+					<div class="button"><span><a target="_blank" href="<?=Config::get('WEBSITE_URL')?>go/<?=$result['prod_code']?>">Visit Store</a></span></div>
+					<div class="clear"></div>
+				</div>
 			</div>
-		<!-- <div class="product-desc">
-			<h2>Product Details</h2>
-			<div style="text-align:center" class="ad728x90"><!-- Google ads -- ></div>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-	        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-	    </div>
-	    <div class="product-tags">
-			<h2>Product Tags</h2>
+			<div class="ad728x90" style="text-align:center">&nbsp;</div>
+			
+			<div class="product-desc">
+				<h2>Product Details</h2>
+				<p><?=$result['prod_desc']?></p>
+	    	</div>
+	     <div class="product-tags">
+		<!--	<h2>Product Tags</h2>
 			<h4>Add Your Tags:</h4>
 			<div class="input-box">
-				<input type="text" value="">
+				<input type="text">
 			</div>
 			<div class="button"><span><a href="#">Add Tags</a></span></div>
-	    </div>-->	
-	    <div style="text-align:center" class="ad728x90"><!-- Google ads --></div>			
+			-->
+	    </div>	 
+	  
 	</div>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-						<!--  <a target="_blank" href="<?=Config::get('WEBSITE_URL')?>go/<?=$prodDetails['prod_code']?>"><img title="<?=$prodDetails['prod_name']?>" alt="<?=$prodDetails['prod_name']?>" src="<?=$prodImg[0]?>" /></a><br/>
-						<h1><cite class="ttl"><?=$prodDetails['prod_name']?></cite></h1><br/>
-						<cite class="ttl"><strike class="f12">Rs.<?=$prodDetails['prod_mrp']?></strike> <b>Rs. <?=$prodDetails['prod_price']?></b></cite><br/><br/>
-						 <input type="button" value="PLACE ORDER" style="background:#ed1c24;border-radius:6px;border: medium none;cursor: pointer;outline: medium none;width: 120px;font:bold 14px arial, verdana, sans-serif, FreeSans;color:#fff;padding:5px 10px;">-->
+				<div class="rightsidebar span_3_of_1">
+					<h2>CATEGORIES</h2>
+					<ul>
+				      <li><a href="http://localhost:8090/pricetag/public_html/category/view/id/2/name/Mobiles+Phones/">Mobile Phones</a></li>
+				      <li><a href="#">Desktop</a></li>
+				      <li><a href="#">Laptop</a></li>
+				      <li><a href="#">Accessories</a></li>
+				      <li><a href="#">Software</a></li>
+				      
+    				</ul>
+    				<div class="subscribe">
+    					<h2>Newsletters Signup</h2>
+    						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.......</p>
+						    <div class="signup">
+							    <form>
+							    	<input type="text" onblur="if (this.value == '') {this.value = 'E-mail address';" onfocus="this.value = '';" value="E-mail address"><input type="submit" value="Sign up">
+							    </form>
+						    </div>
+      				</div>
+      				 <div class="community-poll">
+      				 	<h2>Community POll</h2>
+      				 	<p>What is the main reason for you to purchase products online?</p>
+      				 	<div class="poll">
+      				 		<form>
+      				 			<ul>
+									<li>
+									<input type="radio" value="1" class="radio" name="vote">
+									<span class="label"><label>More convenient shipping and delivery </label></span>
+									</li>
+									<li>
+									<input type="radio" value="2" class="radio" name="vote">
+									<span class="label"><label for="vote_2">Lower price</label></span>
+									</li>
+									<li>
+									<input type="radio" value="3" class="radio" name="vote">
+									<span class="label"><label for="vote_3">Bigger choice</label></span>
+									</li>
+									<li>
+									<input type="radio" value="5" class="radio" name="vote">
+									<span class="label"><label for="vote_5">Payments security </label></span>
+									</li>
+									<li>
+									<input type="radio" value="6" class="radio" name="vote">
+									<span class="label"><label for="vote_6">30-day Money Back Guarantee </label></span>
+									</li>
+									<li>
+									<input type="radio" value="7" class="radio" name="vote">
+									<span class="label"><label for="vote_7">Other.</label></span>
+									</li>
+									</ul>
+      				 		</form>
+      				 	</div>
+      				 </div>
+ 				</div>
+ 		</div>
+ 		
+ 		<!-- Start of Simillar Product -->
+ 		
+ 		<div class="content_top">
+    		<div class="heading">
+    			<h3>Similar Product</h3>
+    		</div>
+    	   <div class="clear"></div>
+    	</div>
+ 		
+ 		<div class="section group">
+				<div class="grid_1_of_4 images_1_of_4">
+					 <a href="smart_store/web/preview-3.html"><img src="img/new-pic1.jpg" alt=""></a>
+					 <div class="discount">
+					 <span class="percentage">40%</span>
 					</div>
-					
+					 <h2>Lorem Ipsum is simply </h2>
+					 <p><span class="strike">$438.99</span><span class="price">$403.66</span></p>
+				     <div class="button"><span><img src="img/cart.jpg" alt=""><a href="smart_store/web/preview-3.html" class="cart-button">Add to Cart</a></span> </div>
+				     <div class="button"><span><a href="smart_store/web/preview-3.html" class="details">Details</a></span></div>
 				</div>
+				<div class="grid_1_of_4 images_1_of_4">
+					<a href="smart_store/web/preview-4.html"><img src="img/new-pic2.jpg" alt=""></a>
+					 <div class="discount">
+					 <span class="percentage">22%</span>
+					</div>
+					 <h2>Lorem Ipsum is simply </h2>
+					 <p><span class="strike">$667.22</span><span class="price">$621.75</span></p>
+				      <div class="button"><span><img src="img/cart.jpg" alt=""><a href="smart_store/web/preview-4.html" class="cart-button">Add to Cart</a></span></div>
+				     <div class="button"><span><a href="smart_store/web/preview-4.html" class="details">Details</a></span></div>
+				</div>
+				<div class="grid_1_of_4 images_1_of_4">
+					<a href="smart_store/web/preview-2.html"><img src="img/feature-pic2.jpg" alt=""></a>
+					<div class="discount">
+					 <span class="percentage">55%</span>
+					</div>
+					 <h2>Lorem Ipsum is simply </h2>
+					 <p><span class="strike">$457.22</span><span class="price">$428.02</span></p>
+				      <div class="button"><span><img src="img/cart.jpg" alt=""><a href="smart_store/web/preview-2.html" class="cart-button">Add to Cart</a></span> </div>
+				     <div class="button"><span><a href="smart_store/web/preview-2.html" class="details">Details</a></span></div>
+				</div>
+				<div class="grid_1_of_4 images_1_of_4">
+				 <img src="img/new-pic3.jpg" alt="">
+				  <div class="discount">
+					 <span class="percentage">66%</span>
+					</div>
+					 <h2>Lorem Ipsum is simply </h2>					 
+					 <p><span class="strike">$643.22</span><span class="price">$457.88</span></p>
+				      <div class="button"><span><img src="img/cart.jpg" alt=""><a href="#" class="cart-button">Add to Cart</a></span> </div>
+				     <div class="button"><span><a href="#" class="details">Details</a></span></div>
+				</div>
+			</div>
+ 		
+ 		<!-- End of Simillar Product -->
+ 	</div>
+	</div>
