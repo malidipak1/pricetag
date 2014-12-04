@@ -48,12 +48,6 @@ class Controller {
 		}
 		
 		$this->loadModule();
-		
-		/*  echo "<pre>";
-		print_r($param);
-		print_r($_GET);
-		print_r($this); */
-		
 	}
 	
 	public function loadSmarty () {
@@ -66,24 +60,23 @@ class Controller {
 		
 		$objSmarty->assign("dipak", 'Dipak Mali');
 		
-		return $objSmarty;	
+		return $objSmarty;
 	}
 	
 	public function loadModule() {
 		//$objSmarty = $this->loadSmarty();
 		
 		if(empty($this->module)) {
-			
 			$filename = Config::get('TEMPLATE_DIR') . $this->component . Config::get('DIR_SEPERATOR') . $this->template . ".php";
 			if(!file_exists($filename)) {
 				//$objSmarty->display($filename);
 				$filename = Config::get('TEMPLATE_DIR') . "error" . Config::get('DIR_SEPERATOR') . "404.php";;
 			}
-			include_once (Config::get('LAYOUT_DIR') . 'base-header.php');
+			include_once (Config::get('LAYOUT_DIR') . 'new-header.php');
 			include_once ($filename);
-			include_once (Config::get('LAYOUT_DIR') . 'base-footer.php');
+			include_once (Config::get('LAYOUT_DIR') . 'new-footer.php');
 		
-		} else if ($this->module == "admin"){
+		} if ($this->module == "admin"){
 		
 			
 			$filename = Config::get('TEMPLATE_DIR') ."admin" . Config::get('DIR_SEPERATOR') . $this->component . Config::get('DIR_SEPERATOR') . $this->template . ".php";

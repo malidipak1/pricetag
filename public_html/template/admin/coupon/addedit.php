@@ -41,10 +41,14 @@ $couponRow = $return_array['coupon_row'];
 
                         <div class="form-group">
                                 <label>Coupon for</label>
-                                <select class="form-control">
+                                <select class="form-control" name="coupon_site">
                                     <option>--SELECT--</option>
-                                    <?php foreach ($arrSites as $site) {?>
-                                    	<option value="<?=site['owner_id']?>"><?=site['owner_name']</option>
+                                    <?php foreach ($arrSites as $site) {
+                                    	$strSelected = "";
+                                    	if($site['owner_id'] == $couponRow['coupon_site'])
+                                    		$strSelected = "selected=selected";
+									?>
+                                    	<option <?=$strSelected?> value="<?=$site['owner_id']?>"><?=$site['owner_name']?></option>
                                    <?php } ?>
                                 </select>
                             </div>
@@ -61,7 +65,7 @@ $couponRow = $return_array['coupon_row'];
 
                             <div class="form-group">
                                 <label>Coupon Link</label>
-                                <input class="form-control" name="coupon_link"  value="<?=$couponRow['coupon_link']?>>
+                                <input class="form-control" name="coupon_link"  value="<?=$couponRow['coupon_link']?>">
                             </div>
                             
                             <div class="form-group">

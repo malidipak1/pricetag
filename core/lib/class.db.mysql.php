@@ -1,8 +1,8 @@
 <?php
 Class DbMysql {
-	
 	private static $db;
-
+	public static $arrQuery = array();
+	
 	private function __construct(){
 
 		$conn = null;

@@ -47,7 +47,7 @@ unset($result['result']);
                                                 <td><?=$couponDetails['coupon_site']?></td>
                                                 <td><?=$couponDetails['coupon_title']?></td>
                                                 <td><?=$couponDetails['coupon_code']?></td>
-                                                <td><?=$couponDetails['created_date']?></td>
+                                                <td><?=$couponDetails['updated_date']?></td>
                                                 <td><a href="<?=UrlConfig::get('ADMIN_COUPON_ADDEDIT')?>?couponid=<?=$couponDetails['coupon_id']?>">edit</a></td>
                                             </tr>
                                         <?php } ?>
